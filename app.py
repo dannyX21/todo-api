@@ -1,9 +1,8 @@
-    #!venv/bin/python
+#!venv/bin/python
 from flask import Flask, jsonify, abort, make_response, request, url_for, render_template
 from flask_httpauth import HTTPBasicAuth
 
-auth = HTTPBasicAuth()
-
+auth  = HTTPBasicAuth()
 app = Flask(__name__)
 
 tasks = [
