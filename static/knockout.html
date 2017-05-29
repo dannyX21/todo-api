@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+</head>
+<body>
+  <div class="container" id="main">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="textFirstName">Name</label>
+        <input data-bind="value: firstName" class="text" id="textFirstName" type="text" />
+        <label for="textLastName">Last Name</label>
+        <input data-bind="value: lastName" class="text" id="textLastName" type="text" />
+        <h1>Welcome: <span data-bind="text: fullName"></span></h1>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+function MyViewModel(){
+  this.firstName = ko.observable('danny');
+  this.lastName = ko.observable('Lopez  ');
+  this.fullName = ko.computed(function(){
+    return this.firstName() + " " + this.lastName();
+  }, this);
+}
+myViewModel = new MyViewModel();
+myViewModel.firstName.subscribe(function(newValue){
+   alert("Name is: " + newValue);
+ });
+ko.applyBindings(myViewModel, document.getElementById('main'));
+</script>
+</html>
